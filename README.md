@@ -38,7 +38,7 @@ ______
 `bucket_name`: Название бакета в Yandex Object Storage.<br>
 `file_name`: Название файла с куки в бакете.<br>
 `AWS_ACCESS_KEY_ID`: Key ID для доступа к бакету.<br>
-`AWS_SECRET_ACCESS_KEY`:` Key для доступа к бакету.<br>
+`AWS_SECRET_ACCESS_KEY`: Key для доступа к бакету.<br>
 `region`: Регион бакета (обычно "ru-central1").
 6. В настройках функции установить таймаут 60 секунд и сохранить изменения<br>
 ![image](https://github.com/user-attachments/assets/7b72ff96-543e-4886-9ad9-751239dee50f) 

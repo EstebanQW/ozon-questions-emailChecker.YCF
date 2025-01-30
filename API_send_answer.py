@@ -28,7 +28,7 @@ def answer_question(id: str, text: str, cookie: str) -> str:
         "sec-ch-ua-mobile": "?0",
         "sec-ch-ua-platform": '"Windows"',
         "x-o3-app-name": "seller-ui",
-        "x-o3-company-id": company_id,
+        "x-o3-company-id": COMPANY_ID,
         "x-o3-language": "ru",
         "x-o3-page-type": "questions",
         "Referer": "https://seller.ozon.ru/app/reviews/questions",
@@ -38,7 +38,7 @@ def answer_question(id: str, text: str, cookie: str) -> str:
     body = {
         "text": text,
         "question_id": id,
-        "sc_company_id": company_id,
+        "sc_company_id": COMPANY_ID,
         "company_type": "seller",
     }
     for attempt in range(3):

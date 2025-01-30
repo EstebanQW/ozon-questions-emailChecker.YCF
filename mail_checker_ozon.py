@@ -21,17 +21,17 @@ def read_cookie_bucket() -> str:
                 endpoint_url="https://storage.yandexcloud.net",
                 aws_access_key_id=AWS_ACCESS_KEY_ID,
                 aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-                region_name=region,
+                region_name=REGION,
             )
 
             # Читаем содержимое файла
-            response = s3.get_object(Bucket=bucket_name, Key=file_name)
+            response = s3.get_object(Bucket=BUCKET_NAME, Key=FILE_NAME)
 
             # Проверяем успешность операции
             if response["ResponseMetadata"]["HTTPStatusCode"] == 200:
                 content = response["Body"].read().decode("utf-8")
                 print(
-                    f"File '{file_name}' successfully read from Yandex Object Storage."
+                    f"File '{FILE_NAME}' successfully read from Yandex Object Storage."
                 )
                 return content  # Возвращаем содержимое файла
             else:
@@ -85,8 +85,8 @@ def mark_as_unread(mail: imaplib.IMAP4_SSL, num: str):
 def start_sending_answers(cookie: str):
     # Подключение к серверу
     print("Подключаюсь к почтовому серверу.")
-    mail = imaplib.IMAP4_SSL(imap_server)
-    mail.login(imap_username, imap_password)
+    mail = imaplib.IMAP4_SSL(IMAP_SERVER)
+    mail.login(IMAP_USERNAME, IMAP_PASSWORD)
 
     # Выбор почтового ящика (INBOX - это стандартное имя для входящих писем)
     mail.select("INBOX")
@@ -127,7 +127,7 @@ def start_sending_answers(cookie: str):
                 )
         from_mail = sender
 
-        if from_mail == trusted_mail:  # проверяю, что письмо пришло с доверенного email
+        if from_mail == TRUSTED_MAIL:  # проверяю, что письмо пришло с доверенного email
             subject_tema = subject.replace("Re: ", "")
             html_content = content
 

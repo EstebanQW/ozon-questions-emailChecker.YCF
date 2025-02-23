@@ -1,11 +1,11 @@
-import boto3
-import imaplib
 import email
-from email.header import decode_header
+import imaplib
 import time
+
+import boto3
+from API_send_answer import send_answer
 from bs4 import BeautifulSoup
 from login import *
-from API_send_answer import send_answer
 
 
 # Читает файл cookie из облачного хранилища Yandex (S3)
@@ -56,7 +56,7 @@ def read_cookie_bucket() -> str:
 # Проверяет наличие cookies и вызывает функцию для обработки почты, если cookie корректные
 def mail_read():
     cookie = read_cookie_bucket()
-    print(f"ПРОЧИТАЛ COOKIE")
+    print("ПРОЧИТАЛ COOKIE")
     if cookie is not None and len(cookie) > 50:
         start_checking_mail(cookie)
     else:
@@ -74,7 +74,7 @@ def mark_as_unread(mail: imaplib.IMAP4_SSL, num: str):
         if status[0] != "OK":
             print(f"Ошибка при сбросе флага 'Seen': {status[0]}")
         else:
-            print(f"Письмо снова помечено как непрочитанное.")
+            print("Письмо снова помечено как непрочитанное.")
     except imaplib.IMAP4.error as e:
         print(f"Ошибка IMAP: {e}")
     except Exception as e:
@@ -111,7 +111,7 @@ def start_sending_answers(cookie: str):
         sender = msg["Return-path"]
 
         # Получение темы письма
-        subject = decode_header(msg["Subject"])[0][0]
+        subject = email.header.decode_header(msg["Subject"])[0][0]
         subject = subject.decode("utf-8")
 
         # Получение содержимого письма

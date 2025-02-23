@@ -1,6 +1,7 @@
-import requests
 import json
 import time
+
+import requests
 from login import *
 
 
@@ -12,7 +13,7 @@ def send_answer(
         print(f"По API ОТВЕТ id: {subject_tema} текст: '{content_telo}'")
         return answer_question(subject_tema, content_telo, cookie)
     else:
-        print(f"По API НЕ отправляю.")
+        print("По API НЕ отправляю.")
 
 
 url = "https://seller.ozon.ru/api/v1/create-answer"
